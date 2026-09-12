@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2b211b">
 <link rel="manifest" href="manifest.json">
-<title>TF Arte em Couro — V2.3</title>
+<title>TF Arte em Couro — V2.4</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f5f1ec;color:#2b211b;font-family:Arial,sans-serif}
 header{background:#2b211b;color:white;padding:16px;position:sticky;top:0;z-index:5}header h1{margin:0;font-size:21px}
@@ -60,7 +60,7 @@ function orderSort(a,b){let p={ALTA:0,'MÉDIA':1,NORMAL:2};return(p[a.priority]?
 function recalc(){let c=today();active().sort(orderSort).forEach((o,i)=>{o.queue=i+1;o.startEstimate=o.startDate||addWork(c,0);o.endEstimate=addWork(o.startEstimate,o.days-1);if(!o.startDate)c=addWork(o.startEstimate,o.days)})}
 function renderNav(){$('nav').innerHTML=NAV.map(x=>`<button class="${page==x[0]?'active':''}" onclick="go('${x[0]}')">${x[1]}</button>`).join('')}
 function go(x){page=x;render();scrollTo(0,0)}
-function render(){recalc();renderNav();dashboard();orders();newOrder();production();delivered();clients();reports();capacity();productsPage()}
+function render(){recalc();renderNav();document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===page));dashboard();orders();newOrder();production();delivered();clients();reports();capacity();productsPage()}
 function dashboard(){
  let a=active(),d=data.orders.filter(o=>o.status==='ENTREGUE'),ym=today().slice(0,7),yr=new Date().getFullYear();
  let dm=d.filter(o=>(o.deliveredAt||o.createdAt).slice(0,7)==ym),dy=d.filter(o=>new Date(o.deliveredAt||o.createdAt).getFullYear()==yr),h=a.reduce((s,o)=>s+o.hours,0);

@@ -1,6 +1,2 @@
-TF Arte em Couro — V2.3
-
-Correção da tela em branco da V2.2 e atualização do cache do PWA.
-Mantém a mesma chave de armazenamento local dos pedidos: tf_arte_couro_v13_data.
-
-Arquivos: index.html, manifest.json, sw.js.
+TF Arte em Couro — V2.4
+Correção: a navegação agora alterna corretamente entre as telas. Cache do PWA atualizado para V2.4.
