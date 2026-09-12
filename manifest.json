@@ -3,7 +3,7 @@
   "short_name": "TF Couro",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f4f1ed",
+  "background_color": "#f5f1ec",
   "theme_color": "#2b211b",
   "lang": "pt-BR"
 }

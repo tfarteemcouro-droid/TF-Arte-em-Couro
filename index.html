@@ -2,125 +2,109 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2b211b">
 <link rel="manifest" href="manifest.json">
-<title>TF Arte em Couro</title>
+<title>TF Arte em Couro — V2.2</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f4f1ed;color:#2b211b;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-header{background:#2b211b;color:#fff;padding:18px 16px}header h1{margin:0;font-size:21px}header p{margin:5px 0 0;opacity:.8;font-size:13px}
-nav{display:flex;gap:7px;padding:10px;background:#fff;border-bottom:1px solid #ddd;overflow:auto;position:sticky;top:0;z-index:10}
-nav button{border:0;border-radius:10px;padding:10px 12px;background:#eee7df;color:#2b211b;font-weight:700;white-space:nowrap}
-nav button.active{background:#2b211b;color:#fff}
-main{max-width:1100px;margin:auto;padding:14px}.page{display:none}.page.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{background:#fff;border:1px solid #ded7d0;border-radius:14px;padding:14px;margin-bottom:12px}
-.kpi{font-size:26px;font-weight:800;margin-top:5px}.muted{font-size:13px;color:#756b64}
-.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-.field{margin-bottom:10px}label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
-input,select,textarea{width:100%;padding:10px;border:1px solid #cfc5bc;border-radius:9px;background:#fff;font:inherit}
-button.primary,button.secondary{border:0;border-radius:10px;padding:11px 14px;font-weight:700}
-.primary{background:#2b211b;color:#fff}.secondary{background:#eee7df;color:#2b211b}
-.actions{display:flex;gap:8px;flex-wrap:wrap}.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:#eee7df;font-size:12px;font-weight:700}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid #e4ddd7}th{background:#f4f1ed}
-.month{margin-bottom:12px}.bar{height:10px;background:#e7e0da;border-radius:10px;overflow:hidden}.bar i{display:block;height:100%;background:#6b4f3b}
-.notice{padding:12px;border-radius:10px;background:#fff4cf;margin-bottom:12px}
-@media(max-width:600px){main{padding:10px}}
-</style>
-</head>
+*{box-sizing:border-box}body{margin:0;background:#f5f1ec;color:#2b211b;font-family:Arial,sans-serif}
+header{background:#2b211b;color:white;padding:16px;position:sticky;top:0;z-index:5}header h1{margin:0;font-size:21px}
+nav{display:flex;gap:6px;overflow:auto;background:#fff;padding:8px;position:sticky;top:61px;z-index:4}
+button{border:0;border-radius:9px;padding:10px 12px;font-weight:700;cursor:pointer;background:#2b211b;color:#fff}
+nav button{background:#eee7df;color:#2b211b;white-space:nowrap}nav button.active{background:#2b211b;color:#fff}
+main{max-width:1150px;margin:auto;padding:14px}.page{display:none}.page.active{display:block}
+.card,.section{background:#fff;border-radius:13px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px #0000000d}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.kpi{font-size:25px;font-weight:800;margin-top:5px}.muted{color:#756b63;font-size:13px}
+.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}input,select,textarea{width:100%;padding:10px;border:1px solid #cfc5bc;border-radius:9px;font:inherit}textarea{min-height:90px}.full{grid-column:1/-1}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.secondary{background:#eee7df;color:#2b211b}.success{background:#2d6a4f}.danger{background:#9b2c2c}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#eee7df;font-size:12px;font-weight:700}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px;min-width:800px}th,td{padding:9px;border-bottom:1px solid #e5dfd9;text-align:left;vertical-align:top}th{background:#f4f1ed}
+.kanban{display:grid;grid-template-columns:repeat(3,minmax(250px,1fr));gap:10px;overflow:auto}.col{background:#f1ece6;border-radius:12px;padding:10px}.mini{background:#fff;border-radius:9px;padding:10px;margin:7px 0;cursor:pointer}
+.detailgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px}.detail{background:#f7f3ee;padding:10px;border-radius:9px}.detail b{display:block;font-size:12px;color:#756b63;margin-bottom:3px}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;z-index:20}.modal.show{display:flex}.modalbox{background:#fff;width:100%;max-width:850px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:16px;margin:auto}
+</style></head>
 <body>
-<header><h1>TF Arte em Couro</h1><p>Pedidos • Produção • Capacidade • Clientes</p></header>
-<nav>
-<button class="active" data-page="dashboard">Dashboard</button>
-<button data-page="orders">Pedidos</button>
-<button data-page="new">Novo pedido</button>
-<button data-page="production">Produção</button>
-<button data-page="clients">Clientes</button>
-<button data-page="capacity">12 meses</button>
-</nav>
+<header><h1>TF Arte em Couro</h1><small>Sistema de gestão de encomendas e produção</small></header>
+<nav id="nav"></nav>
 <main>
-<section id="dashboard" class="page active"></section>
-<section id="orders" class="page"></section>
-<section id="new" class="page"></section>
-<section id="production" class="page"></section>
-<section id="clients" class="page"></section>
-<section id="capacity" class="page"></section>
+<section id="dashboard" class="page active"></section><section id="orders" class="page"></section>
+<section id="new" class="page"></section><section id="production" class="page"></section>
+<section id="delivered" class="page"></section><section id="clients" class="page"></section>
+<section id="reports" class="page"></section><section id="capacity" class="page"></section><section id="products" class="page"></section>
 </main>
+<div id="modal" class="modal"><div class="modalbox"><div style="display:flex;justify-content:space-between;align-items:center"><h2 id="mt"></h2><button class="secondary" onclick="closeModal()">Fechar</button></div><div id="mb"></div></div></div>
 <script>
-const KEY="tf_arte_couro_web_v1";
-const products={"Cinto Liso Social":8,"Cinto Entalhado Padrão":16,"Cinto Entalhado Premium":24,"Cinto Balaiado":8,"Cinto Vazado":24,"Cinto Costura Americana":24};
-const statuses=["NOVO PEDIDO","AGUARDANDO PAGAMENTO","AGUARDANDO INFORMAÇÕES","APROVADO","FILA DE PRODUÇÃO","CORTE","PREPARAÇÃO","TRANSFERÊNCIA DO DESENHO","ENTALHE","TINGIMENTO","ACABAMENTO","MONTAGEM","CONTROLE DE QUALIDADE","PRONTO","ENVIADO","ENTREGUE"];
-let db=JSON.parse(localStorage.getItem(KEY)||'{"seq":1,"orders":[]}');
-const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const money=x=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(x)||0);
-const br=s=>s?new Date(s+"T00:00:00").toLocaleDateString("pt-BR"):"-";
-const hrs=o=>Number(o.hours)||products[o.product]||8;
-function save(){localStorage.setItem(KEY,JSON.stringify(db));render();}
-function workday(d){let x=new Date(d);while(x.getDay()==0||x.getDay()==6)x.setDate(x.getDate()+1);return x}
-function addHours(start,h){let d=workday(start),left=h;while(left>0){if(d.getDay()>0&&d.getDay()<6){left-=Math.min(8,left);if(left<=0)return d.toISOString().slice(0,10)}d.setDate(d.getDate()+1);d=workday(d)}}
-function pr(p){return p==="ALTA"?0:p==="MÉDIA"?1:2}
-function recalc(){
- const arr=[...db.orders].sort((a,b)=>(pr(a.priority)-pr(b.priority))||String(a.orderDate).localeCompare(String(b.orderDate)));
- let cursor=new Date();cursor.setHours(0,0,0,0);
- arr.forEach(o=>{cursor=workday(cursor);o.startDate=cursor.toISOString().slice(0,10);o.endDate=addHours(cursor,hrs(o));o.scheduled=true;cursor=new Date(o.endDate+"T00:00:00");cursor.setDate(cursor.getDate()+1)});
- db.orders=arr;localStorage.setItem(KEY,JSON.stringify(db));render()
-}
-function go(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(page).classList.add("active");document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===page));render()}
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.page));
-function render(){
- dashboard();orders();newOrder();production();clients();capacity()
-}
+'use strict';
+const KEY='tf_arte_couro_v13_data';
+const DEFAULT_PRODUCTS={
+'Cinto Liso':1,'Cinto Balaiado':1,'Cinto Entalhado Padrão':2,'Cinto Entalhado Premium':3,'Cinto Vazado':3,'Cinto Costura Americana':3,
+'Carteira':3,'Bainha celular':3,'Bainha faca':3,'Garrafa térmica':7,'Correia de Espora':2,'Porta isopor':3,'Coldre':4,'Case celular':2,'Porta buquê':3};
+const STAT=['NOVO PEDIDO','AGUARDANDO PAGAMENTO','AGUARDANDO INFORMAÇÕES','APROVADO','FILA DE PRODUÇÃO','EM PRODUÇÃO','CORTE','PREPARAÇÃO','TRANSFERÊNCIA DO DESENHO','ENTALHE','TINGIMENTO','ACABAMENTO','MONTAGEM','CONTROLE DE QUALIDADE','PRONTO','ENVIADO','ENTREGUE'];
+const NAV=[['dashboard','Dashboard'],['orders','A produzir'],['new','Novo pedido'],['production','Produção'],['delivered','Entregues'],['clients','Clientes'],['reports','Relatórios'],['capacity','Capacidade'],['products','Produtos']];
+let data=load(), page='dashboard';
+
+function load(){try{let d=JSON.parse(localStorage.getItem(KEY)||'{}');d.orders=Array.isArray(d.orders)?d.orders:[];d.seq=Number(d.seq)||1;d.products=Object.assign({},DEFAULT_PRODUCTS,d.products||{});d.orders=d.orders.map(norm);return d}catch(e){return{orders:[],seq:1,products:Object.assign({},DEFAULT_PRODUCTS)}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function norm(o){o=Object.assign({},o);o.clientName=o.clientName||o.customer||'';o.product=o.product||'Cinto Liso';o.total=+o.total||+o.value||0;o.paid=+o.paid||0;o.priority=o.priority||'NORMAL';o.status=o.status||'NOVO PEDIDO';o.createdAt=o.createdAt||new Date().toISOString();o.days=+o.days||days(o.product);o.hours=+o.hours||o.days*8;o.history=Array.isArray(o.history)?o.history:[{at:o.createdAt,status:o.status}];return o}
+function days(p){return +(data.products[p]||DEFAULT_PRODUCTS[p]||1)}
+function hours(p){return days(p)*8}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function money(n){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(+n||0)}
+function date(s){if(!s)return '-';return new Date(s+'T00:00:00').toLocaleDateString('pt-BR')}
+function today(){return new Date().toISOString().slice(0,10)}
+function addWork(start,n){let d=new Date(start+'T00:00:00');while(d.getDay()==0||d.getDay()==6)d.setDate(d.getDate()+1);let first=true;while(n>0){if(!first)d.setDate(d.getDate()+1);first=false;while(d.getDay()==0||d.getDay()==6)d.setDate(d.getDate()+1);n--}return d.toISOString().slice(0,10)}
+function active(){return data.orders.filter(o=>o.status!=='ENTREGUE')}
+function orderSort(a,b){let p={ALTA:0,'MÉDIA':1,NORMAL:2};return(p[a.priority]??2)-(p[b.priority]??2)||new Date(a.createdAt)-new Date(b.createdAt)}
+function recalc(){let c=today();active().sort(orderSort).forEach((o,i)=>{o.queue=i+1;o.startEstimate=o.startDate||addWork(c,0);o.endEstimate=addWork(o.startEstimate,o.days-1);if(!o.startDate)c=addWork(o.startEstimate,o.days)})}
+function renderNav(){nav.innerHTML=NAV.map(x=>`<button class="${page==x[0]?'active':''}" onclick="go('${x[0]}')">${x[1]}</button>`).join('')}
+function go(x){page=x;render();scrollTo(0,0)}
+function render(){recalc();renderNav();dashboard();orders();newOrder();production();delivered();clients();reports();capacity();productsPage()}
 function dashboard(){
- let h=db.orders.reduce((s,o)=>s+hrs(o),0),v=db.orders.reduce((s,o)=>s+Number(o.value||0),0);
- document.getElementById("dashboard").innerHTML=`<h2>Dashboard</h2><div class="grid">
- <div class="card">Pedidos<div class="kpi">${db.orders.length}</div></div>
- <div class="card">Horas comprometidas<div class="kpi">${h}h</div></div>
- <div class="card">Valor da carteira<div class="kpi">${money(v)}</div></div>
- <div class="card">Capacidade padrão<div class="kpi">8h/dia</div><span class="muted">segunda a sexta</span></div>
- </div>
- <div class="card"><b>Próximo passo</b><p>Cadastre os pedidos em <b>Novo pedido</b>. A programação é calculada automaticamente.</p>
- <div class="actions"><button class="primary" onclick="go('new')">Cadastrar pedido</button><button class="secondary" onclick="recalc()">Recalcular fila</button></div></div>`;
+ let a=active(),d=data.orders.filter(o=>o.status==='ENTREGUE'),ym=today().slice(0,7),yr=new Date().getFullYear();
+ let dm=d.filter(o=>(o.deliveredAt||o.createdAt).slice(0,7)==ym),dy=d.filter(o=>new Date(o.deliveredAt||o.createdAt).getFullYear()==yr),h=a.reduce((s,o)=>s+o.hours,0);
+ let ar=a.reduce((s,o)=>s+Math.max(0,o.total-o.paid),0);
+ dashboard.innerHTML=`<div class="section"><h2>Dashboard</h2><div class="muted">Visão geral da carteira, produção e faturamento.</div></div>
+ <div class="grid"><div class="card"><div class="muted">📦 A produzir</div><div class="kpi">${a.length}</div></div><div class="card"><div class="muted">✅ Entregues</div><div class="kpi">${d.length}</div></div>
+ <div class="card"><div class="muted">⏱️ Carga pendente</div><div class="kpi">${h}h</div><div class="muted">${Math.ceil(h/8)} dias de trabalho</div></div>
+ <div class="card"><div class="muted">📅 Produzidos no mês</div><div class="kpi">${dm.length}</div></div><div class="card"><div class="muted">💰 Faturamento do mês</div><div class="kpi">${money(dm.reduce((s,o)=>s+o.total,0))}</div></div>
+ <div class="card"><div class="muted">📈 Produzidos no ano</div><div class="kpi">${dy.length}</div></div><div class="card"><div class="muted">💰 Faturamento do ano</div><div class="kpi">${money(dy.reduce((s,o)=>s+o.total,0))}</div></div>
+ <div class="card"><div class="muted">🧾 A receber</div><div class="kpi">${money(ar)}</div></div></div>
+ <div class="section"><h3>Próximos pedidos</h3>${a.slice(0,5).map(o=>`<div class="mini" onclick="view('${o.code}')"><b>${o.queue}º — ${esc(o.code)}</b> • ${esc(o.clientName)}<br>${esc(o.product)} • ${o.days} dia(s) • início ${date(o.startEstimate)} • conclusão ${date(o.endEstimate)}</div>`).join('')||'<p class="muted">Nenhum pedido pendente.</p>'}</div>`
 }
-function orders(){
- let rows=db.orders.map((o,i)=>`<tr><td>${esc(o.code)}</td><td>${esc(o.customer)}</td><td>${esc(o.product)}</td><td>${hrs(o)}h</td><td>${money(o.value)}</td><td>${br(o.startDate)} → ${br(o.endDate)}</td><td><span class="badge">${esc(o.status)}</span></td><td><button class="secondary" onclick="status(${i})">Status</button></td></tr>`).join("");
- document.getElementById("orders").innerHTML=`<h2>Pedidos</h2><div class="card" style="overflow:auto"><table><thead><tr><th>Código</th><th>Cliente</th><th>Produto</th><th>Horas</th><th>Valor</th><th>Previsão</th><th>Status</th><th></th></tr></thead><tbody>${rows||'<tr><td colspan="8">Nenhum pedido cadastrado.</td></tr>'}</tbody></table></div>`;
-}
+function row(o){return`<tr><td><b>${esc(o.code)}</b></td><td>${esc(o.clientName)}</td><td>${esc(o.product)}</td><td>${o.queue}º</td><td>${o.days}d / ${o.hours}h</td><td>${esc(o.status)}</td><td>${date(o.startEstimate)}</td><td>${date(o.endEstimate)}</td><td><button onclick="view('${o.code}')">Ver pedido</button></td></tr>`}
+function orders(){let a=active().sort((a,b)=>a.queue-b.queue);orders.innerHTML=`<div class="section"><h2>📦 Pedidos a produzir</h2><span class="badge">${a.length} pedido(s)</span></div><div class="card tablewrap"><table><thead><tr><th>Código</th><th>Cliente</th><th>Produto</th><th>Fila</th><th>Tempo</th><th>Status</th><th>Início</th><th>Conclusão</th><th></th></tr></thead><tbody>${a.map(row).join('')||'<tr><td colspan="9">Nenhuma encomenda a produzir.</td></tr>'}</tbody></table></div>`}
 function newOrder(){
- document.getElementById("new").innerHTML=`<h2>Novo pedido</h2><div class="card"><div class="formgrid">
- <div class="field"><label>Cliente</label><input id="customer"></div>
- <div class="field"><label>Produto</label><select id="product">${Object.keys(products).map(x=>`<option>${x}</option>`).join("")}</select></div>
- <div class="field"><label>Valor</label><input id="value" type="number" step=".01"></div>
- <div class="field"><label>Data do pedido</label><input id="orderDate" type="date" value="${new Date().toISOString().slice(0,10)}"></div>
- <div class="field"><label>Prioridade</label><select id="priority"><option>NORMAL</option><option>MÉDIA</option><option>ALTA</option></select></div>
- <div class="field"><label>Horas estimadas</label><input id="hours" type="number" value="8"></div></div>
- <div class="formgrid"><div class="field"><label>Medida / observações</label><textarea id="notes" rows="4"></textarea></div><div class="field"><label>Personalização</label><textarea id="personal" rows="4"></textarea></div></div>
- <div class="actions"><button class="primary" onclick="add()">Salvar e programar automaticamente</button></div></div>`;
- product.onchange=()=>hours.value=products[product.value];
+ let ps=Object.keys(data.products);new.innerHTML=`<div class="section"><h2>➕ Novo pedido</h2><form id="nf"><div class="formgrid">
+ <div><label>Cliente *</label><input name="clientName" required></div><div><label>WhatsApp</label><input name="phone"></div>
+ <div><label>Produto *</label><select id="np" name="product">${ps.map(p=>`<option>${esc(p)}</option>`).join('')}</select></div>
+ <div><label>Dias estimados (automático)</label><input id="nd" readonly></div><div><label>Horas (automático)</label><input id="nh" readonly></div>
+ <div><label>Prioridade</label><select name="priority"><option>NORMAL</option><option>MÉDIA</option><option>ALTA</option></select></div><div><label>Data do pedido</label><input name="orderDate" type="date" value="${today()}"></div>
+ <div><label>Medida</label><input name="measure"></div><div><label>Largura</label><input name="width" value="4 cm"></div><div><label>Couro / cor</label><input name="leather"></div>
+ <div><label>Fivela</label><input name="buckle"></div><div><label>Ponteira</label><input name="tip"></div><div><label>Nome / iniciais</label><input name="initials"></div>
+ <div><label>Pedrarias / cravinhos</label><input name="stones"></div><div><label>Valor total</label><input name="total" type="number" step="0.01"></div><div><label>Valor recebido</label><input name="paid" type="number" step="0.01"></div>
+ <div><label>Forma de pagamento</label><select name="payment"><option>Pix</option><option>Dinheiro</option><option>Cartão</option><option>Transferência</option><option>Outro</option></select></div>
+ <div class="full"><label>Personalização / desenho</label><textarea name="personal"></textarea></div><div class="full"><label>Observações</label><textarea name="notes"></textarea></div></div>
+ <div class="actions"><button>Salvar pedido</button></div></form></div>`;
+ setTime();np.onchange=setTime;nf.onsubmit=e=>{e.preventDefault();let o=Object.fromEntries(new FormData(nf).entries());o.code='TF-'+new Date().getFullYear()+'-'+String(data.seq++).padStart(3,'0');o.createdAt=new Date().toISOString();o.status='NOVO PEDIDO';o.days=days(o.product);o.hours=hours(o.product);o.history=[{at:o.createdAt,status:o.status}];data.orders.push(norm(o));save();go('orders');view(o.code)}
 }
-function add(){
- if(!customer.value.trim()){alert("Informe o cliente.");return}
- db.orders.push({code:"TF-"+new Date().getFullYear()+"-"+String(db.seq++).padStart(3,"0"),customer:customer.value.trim(),product:product.value,value:Number(value.value||0),orderDate:orderDate.value,priority:priority.value,hours:Number(hours.value||products[product.value]),notes:notes.value,personal:personal.value,status:"NOVO PEDIDO"});
- recalc();alert("Pedido cadastrado e programado automaticamente.");go("orders")
-}
-function status(i){let n=prompt("Digite um dos status abaixo:\n\n"+statuses.join("\n"),db.orders[i].status);if(n&&statuses.includes(n)){db.orders[i].status=n;save()}}
+function setTime(){nd.value=days(np.value)+' dia(s)';nh.value=hours(np.value)+' horas'}
 function production(){
- let html=statuses.map(s=>{let a=db.orders.filter(o=>o.status===s);return `<div class="card"><b>${s}</b><div class="kpi">${a.length}</div>${a.slice(0,4).map(o=>`<div><span class="badge">${esc(o.code)}</span> ${esc(o.customer)}</div>`).join("")}</div>`}).join("");
- document.getElementById("production").innerHTML=`<h2>Produção</h2><div class="grid">${html}</div>`;
+ let cols=['FILA DE PRODUÇÃO','EM PRODUÇÃO','CORTE','PREPARAÇÃO','TRANSFERÊNCIA DO DESENHO','ENTALHE','TINGIMENTO','ACABAMENTO','MONTAGEM','CONTROLE DE QUALIDADE','PRONTO','ENVIADO'];
+ production.innerHTML=`<div class="section"><h2>🛠️ Produção</h2><p class="muted">Antes de começar, abra o pedido e confira a ficha completa.</p><div class="kanban">${cols.map(c=>`<div class="col"><h3>${c}</h3>${data.orders.filter(o=>o.status==c).map(o=>`<div class="mini" onclick="view('${o.code}')"><b>${esc(o.code)}</b><br>${esc(o.clientName)}<br>${esc(o.product)}<br>${o.days} dia(s) • conclusão ${date(o.endEstimate)}</div>`).join('')||'<span class="muted">Vazio</span>'}</div>`).join('')}</div></div>`
 }
-function clients(){
- let m={};db.orders.forEach(o=>m[o.customer]=(m[o.customer]||0)+1);
- document.getElementById("clients").innerHTML=`<h2>Clientes</h2><div class="card"><table><thead><tr><th>Cliente</th><th>Pedidos</th></tr></thead><tbody>${Object.entries(m).sort().map(([n,c])=>`<tr><td>${esc(n)}</td><td>${c}</td></tr>`).join("")||"<tr><td colspan='2'>Nenhum cliente.</td></tr>"}</tbody></table></div>`;
-}
-function capacity(){
- let now=new Date(),out="";
- for(let k=0;k<12;k++){let d=new Date(now.getFullYear(),now.getMonth()+k,1),key=d.toISOString().slice(0,7),days=0;
-  for(let x=new Date(d);x.getMonth()==d.getMonth();x.setDate(x.getDate()+1))if(x.getDay()>0&&x.getDay()<6)days++;
-  let cap=days*8,a=db.orders.filter(o=>o.startDate?.slice(0,7)==key),used=a.reduce((s,o)=>s+hrs(o),0),pct=cap?Math.min(100,used/cap*100):0;
-  out+=`<div class="card month"><h3>${d.toLocaleDateString("pt-BR",{month:"long",year:"numeric"})}</h3><div class="muted">${used}h ocupadas • ${Math.max(0,cap-used)}h livres de ${cap}h</div><div class="bar"><i style="width:${pct}%"></i></div>${a.map(o=>`<p><b>${esc(o.code)}</b> — ${esc(o.customer)} — ${hrs(o)}h<br><span class="muted">${br(o.startDate)} → ${br(o.endDate)}</span></p>`).join("")||'<span class="muted">Sem pedidos.</span>'}</div>`;
- }
- document.getElementById("capacity").innerHTML=`<h2>Capacidade — próximos 12 meses</h2><div class="notice">A fila considera 8 horas por dia, de segunda a sexta. Use “Recalcular fila” após alterar prioridades.</div><div class="actions"><button class="primary" onclick="recalc()">Recalcular fila</button></div><div style="margin-top:12px">${out}</div>`;
-}
+function delivered(){let d=data.orders.filter(o=>o.status==='ENTREGUE').sort((a,b)=>new Date(b.deliveredAt||b.createdAt)-new Date(a.deliveredAt||a.createdAt));delivered.innerHTML=`<div class="section"><h2>✅ Pedidos entregues</h2><div class="muted">Histórico permanente dos pedidos finalizados.</div></div><div class="card tablewrap"><table><thead><tr><th>Entrega</th><th>Código</th><th>Cliente</th><th>Produto</th><th>Valor</th><th>Recebido</th><th></th></tr></thead><tbody>${d.map(o=>`<tr><td>${date(o.deliveredAt||o.createdAt.slice(0,10))}</td><td>${esc(o.code)}</td><td>${esc(o.clientName)}</td><td>${esc(o.product)}</td><td>${money(o.total)}</td><td>${money(o.paid)}</td><td><button onclick="view('${o.code}')">Ver pedido</button></td></tr>`).join('')||'<tr><td colspan="7">Nenhum pedido entregue.</td></tr>'}</tbody></table></div>`}
+function clients(){let m={};data.orders.forEach(o=>(m[o.clientName]??=[]).push(o));clients.innerHTML=`<div class="section"><h2>👥 Clientes</h2></div>${Object.entries(m).sort().map(([n,os])=>`<div class="card"><b>${esc(n)}</b><br><span class="muted">${os.length} pedido(s) • ${money(os.reduce((s,o)=>s+o.total,0))}</span><div class="actions">${os.map(o=>`<button class="secondary" onclick="view('${o.code}')">${esc(o.code)}</button>`).join('')}</div></div>`).join('')||'<div class="card">Nenhum cliente.</div>'}`}
+function reports(){let y=new Date().getFullYear(),d=data.orders.filter(o=>o.status==='ENTREGUE'&&new Date(o.deliveredAt||o.createdAt).getFullYear()==y);reports.innerHTML=`<div class="section"><h2>📊 Relatórios ${y}</h2><div class="grid"><div class="card"><div class="muted">Peças entregues</div><div class="kpi">${d.length}</div></div><div class="card"><div class="muted">Faturamento</div><div class="kpi">${money(d.reduce((s,o)=>s+o.total,0))}</div></div></div></div><div class="card tablewrap"><table><thead><tr><th>Mês</th><th>Entregues</th><th>Faturamento</th><th>Recebido</th><th>A receber</th></tr></thead><tbody>${Array.from({length:12},(_,m)=>{let os=d.filter(o=>new Date(o.deliveredAt||o.createdAt).getMonth()==m);return`<tr><td>${new Date(y,m,1).toLocaleDateString('pt-BR',{month:'long'})}</td><td>${os.length}</td><td>${money(os.reduce((s,o)=>s+o.total,0))}</td><td>${money(os.reduce((s,o)=>s+o.paid,0))}</td><td>${money(os.reduce((s,o)=>s+Math.max(0,o.total-o.paid),0))}</td></tr>`}).join('')}</tbody></table></div>`}
+function capacity(){let a=active(),h=a.reduce((s,o)=>s+o.hours,0);capacity.innerHTML=`<div class="section"><h2>📅 Capacidade</h2><p>Jornada: <b>8 horas por dia</b>.</p><div class="grid"><div class="card"><div class="muted">Horas pendentes</div><div class="kpi">${h}h</div></div><div class="card"><div class="muted">Dias de trabalho</div><div class="kpi">${Math.ceil(h/8)}</div></div></div></div><div class="section"><h3>Próximos 12 meses</h3><div class="tablewrap"><table><thead><tr><th>Mês</th><th>Pedidos</th><th>Horas</th><th>Dias</th></tr></thead><tbody>${Array.from({length:12},(_,i)=>{let d=new Date();d.setMonth(d.getMonth()+i,1),ym=d.toISOString().slice(0,7),os=a.filter(o=>(o.endEstimate||'').slice(0,7)==ym),hh=os.reduce((s,o)=>s+o.hours,0);return`<tr><td>${d.toLocaleDateString('pt-BR',{month:'long',year:'numeric'})}</td><td>${os.length}</td><td>${hh}h</td><td>${Math.ceil(hh/8)}</td></tr>`}).join('')}</tbody></table></div></div>`}
+function productsPage(){products.innerHTML=`<div class="section"><h2>⚙️ Produtos</h2><p class="muted">Dias cadastrados geram automaticamente horas (8h/dia).</p><div class="tablewrap"><table><thead><tr><th>Produto</th><th>Dias</th><th>Horas</th><th></th></tr></thead><tbody>${Object.entries(data.products).map(([p,d])=>`<tr><td>${esc(p)}</td><td>${d}</td><td>${d*8}h</td><td><button class="secondary" onclick="changeProduct(${JSON.stringify(p)})">Alterar</button></td></tr>`).join('')}</tbody></table></div><div class="actions"><button onclick="addProduct()">➕ Adicionar produto</button></div></div>`}
+function changeProduct(p){let v=prompt('Dias de produção para '+p+':',data.products[p]);if(v&&+v>0){data.products[p]=Math.ceil(+v);save()}}
+function addProduct(){let p=prompt('Nome do produto:');if(!p)return;let v=prompt('Dias de produção:');if(v&&+v>0){data.products[p.trim()]=Math.ceil(+v);save()}}
+function detail(o){let f=(a,b)=>`<div class="detail"><b>${a}</b>${esc(b||'-')}</div>`;return`<div class="detailgrid">${f('Cliente',o.clientName)}${f('Produto',o.product)}${f('Medida',o.measure)}${f('Largura',o.width)}${f('Couro / cor',o.leather)}${f('Fivela',o.buckle)}${f('Ponteira',o.tip)}${f('Nome / iniciais',o.initials)}${f('Personalização / desenho',o.personal)}${f('Pedrarias',o.stones)}${f('Observações',o.notes)}${f('Tempo estimado',o.days+' dia(s) / '+o.hours+'h')}${f('Pedido',date(o.orderDate||o.createdAt.slice(0,10)))}${f('Início real',date(o.startDate))}${f('Início estimado',date(o.startEstimate))}${f('Conclusão estimada',date(o.endEstimate))}${f('Entrega',date(o.deliveredAt))}${f('Status',o.status)}${f('Valor',money(o.total))}${f('Recebido',money(o.paid))}${f('Saldo',money(Math.max(0,o.total-o.paid)))}</div>`}
+function view(code){let o=data.orders.find(x=>x.code==code);if(!o)return;mt.textContent=o.code;mb.innerHTML=detail(o)+`<div class="actions">${o.status==='ENTREGUE'?'':`<button class="success" onclick="start('${o.code}')">▶️ Iniciar produção</button><button onclick="advance('${o.code}')">Avançar status</button>`}<button class="secondary" onclick="edit('${o.code}')">Editar pedido</button></div><h3>Histórico</h3>${o.history.map(h=>`<div class="mini">${new Date(h.at).toLocaleString('pt-BR')} — <b>${esc(h.status)}</b></div>`).join('')}`;modal.classList.add('show')}
+function closeModal(){modal.classList.remove('show')}
+function start(c){let o=data.orders.find(x=>x.code==c);o.startDate=o.startDate||today();o.status='EM PRODUÇÃO';o.history.push({at:new Date().toISOString(),status:o.status});save();view(c)}
+function advance(c){let o=data.orders.find(x=>x.code==c),i=STAT.indexOf(o.status),s=STAT[Math.min(i+1,STAT.length-1)];o.status=s;if(s==='ENTREGUE')o.deliveredAt=today();o.history.push({at:new Date().toISOString(),status:s});save();if(s==='ENTREGUE')closeModal();else view(c)}
+function edit(c){let o=data.orders.find(x=>x.code==c);mt.textContent='Editar '+o.code;mb.innerHTML=`<form id="ef"><div class="formgrid"><div><label>Cliente</label><input name="clientName" value="${esc(o.clientName)}"></div><div><label>Produto</label><select name="product">${Object.keys(data.products).map(p=>`<option ${p==o.product?'selected':''}>${esc(p)}</option>`).join('')}</select></div><div><label>Medida</label><input name="measure" value="${esc(o.measure)}"></div><div><label>Largura</label><input name="width" value="${esc(o.width)}"></div><div><label>Couro / cor</label><input name="leather" value="${esc(o.leather)}"></div><div><label>Fivela</label><input name="buckle" value="${esc(o.buckle)}"></div><div><label>Ponteira</label><input name="tip" value="${esc(o.tip)}"></div><div><label>Iniciais</label><input name="initials" value="${esc(o.initials)}"></div><div><label>Pedrarias</label><input name="stones" value="${esc(o.stones)}"></div><div><label>Valor</label><input name="total" type="number" step="0.01" value="${o.total}"></div><div><label>Recebido</label><input name="paid" type="number" step="0.01" value="${o.paid}"></div><div><label>Status</label><select name="status">${STAT.map(s=>`<option ${s==o.status?'selected':''}>${s}</option>`).join('')}</select></div><div class="full"><label>Personalização</label><textarea name="personal">${esc(o.personal)}</textarea></div><div class="full"><label>Observações</label><textarea name="notes">${esc(o.notes)}</textarea></div></div><div class="actions"><button>Salvar alterações</button></div></form>`;ef.onsubmit=e=>{e.preventDefault();Object.assign(o,Object.fromEntries(new FormData(ef).entries()));o.total=+o.total||0;o.paid=+o.paid||0;o.days=days(o.product);o.hours=hours(o.product);if(o.status==='ENTREGUE')o.deliveredAt=o.deliveredAt||today();o.history.push({at:new Date().toISOString(),status:'DADOS ATUALIZADOS'});save();view(c)}}
 render();
-if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
-</script>
-</body>
-</html>
+</script></body></html>

@@ -1,0 +1,4 @@
+TF Arte em Couro — V2.2
+Inclui carteira A produzir, Entregues, ficha de produção, tempos automáticos, 15 produtos, fila, estimativas, Dashboard, relatórios, faturamento e cadastro de produtos.
+Jornada: 8 horas/dia.
+Os dados usam a mesma chave localStorage da versão anterior para tentar preservar pedidos existentes.
