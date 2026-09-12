@@ -1,4 +1,6 @@
-TF Arte em Couro — V2.2
-Inclui carteira A produzir, Entregues, ficha de produção, tempos automáticos, 15 produtos, fila, estimativas, Dashboard, relatórios, faturamento e cadastro de produtos.
-Jornada: 8 horas/dia.
-Os dados usam a mesma chave localStorage da versão anterior para tentar preservar pedidos existentes.
+TF Arte em Couro — V2.3
+
+Correção da tela em branco da V2.2 e atualização do cache do PWA.
+Mantém a mesma chave de armazenamento local dos pedidos: tf_arte_couro_v13_data.
+
+Arquivos: index.html, manifest.json, sw.js.
